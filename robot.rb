@@ -37,7 +37,7 @@ module Robot
       when 'WEST'
         @direction = 'SOUTH'
       end
-      self.print_position
+      print_position
     end
 
     def left
@@ -64,7 +64,7 @@ module Robot
 
     def step_forward
       case @direction
-      when 'NORTH' then @position_y += 1 if @position_y + 1< @table.width_table
+      when 'NORTH' then @position_y += 1 if @position_y + 1 < @table.width_table
       when 'SOUTH' then @position_y -= 1 if @position_y.positive?
       when 'EAST' then @position_x += 1 if @position_x + 1 < @table.length_table
       when 'WEST' then @position_x -= 1 if @position_x.positive?

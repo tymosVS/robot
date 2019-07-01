@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Table
+  # create table
   class Table
     attr_accessor :length_table, :width_table
 

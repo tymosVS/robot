@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Robot
-
+  # simulates robot behavior
   class Robot
     attr_accessor :direction, :position_x, :position_y, :plased
     attr_reader :table

@@ -8,44 +8,44 @@ module RobotRun
     tab = Table::Table.new(10,10)
     rob1 = Robot::Robot.new
     puts 'проверка на не выход на юг'
-    rob1.PLACE(tab, 2, 2, 'SOUTH')
+    rob1.place(tab, 2, 2, 'SOUTH')
     10.times do
-      rob1.MOVE
-      rob1.REPORT
+      rob1.move
+      rob1.report
     end
     puts 'проверка на не выход на запад'
     rob2 = Robot::Robot.new
-    rob2.PLACE(tab, 9, 2, 'WEST')
+    rob2.place(tab, 9, 2, 'WEST')
     10.times do
-      rob2.MOVE
-      rob2.REPORT
+      rob2.move
+      rob2.report
     end
     puts 'проверка на не размещение при невеных кооординатах'
     rob3 = Robot::Robot.new
-    rob3.PLACE(tab, 10, 2, 'WEST')
-    rob3.REPORT
-    rob3.PLACE(tab, 2, 10, 'WEST')
-    rob3.MOVE
-    rob3.REPORT
-    rob3.PLACE(tab, -1, 10, 'WEST')
-    rob3.REPORT
-    rob3.PLACE(tab, 2, -1, 'WEST')
-    rob3.REPORT
-    rob3.PLACE(tab, 0, 0, 'WEST')
-    rob3.REPORT
+    rob3.place(tab, 10, 2, 'WEST')
+    rob3.report
+    rob3.place(tab, 2, 10, 'WEST')
+    rob3.move
+    rob3.report
+    rob3.place(tab, -1, 10, 'WEST')
+    rob3.report
+    rob3.place(tab, 2, -1, 'WEST')
+    rob3.report
+    rob3.place(tab, 0, 0, 'WEST')
+    rob3.report
     puts 'проверка на не выход на восток'
     rob4 = Robot::Robot.new
-    rob4.PLACE(tab, 8, 2, 'EAST')
+    rob4.place(tab, 8, 2, 'EAST')
     10.times do
-      rob4.MOVE
-      rob4.REPORT
+      rob4.move
+      rob4.report
     end
     puts 'проверка на не выход на север'
     rob5 = Robot::Robot.new
-    rob5.PLACE(tab, 8, 8, 'NORTH')
+    rob5.place(tab, 8, 8, 'NORTH')
     4.times do
-      rob5.MOVE
-      rob5.REPORT
+      rob5.move
+      rob5.report
     end
   end
 
@@ -73,15 +73,15 @@ module RobotRun
         act.slice!('PLACE')
         tmp = act.gsub(/\s+/, "").split(',')
         # print tmp
-        robot.PLACE(tabl, tmp[0].to_i, tmp[1].to_i,tmp[2])
+        robot.place(tabl, tmp[0].to_i, tmp[1].to_i,tmp[2])
       when 'MOVE'
-        robot.MOVE
+        robot.move
       when 'LEFT'
-        robot.LEFT
+        robot.left
       when 'RIGHT'
-        robot.RIGHT
+        robot.right
       when 'REPORT'
-        robot.REPORT
+        robot.report
       when 'EXIT'
         break
       end
@@ -112,15 +112,15 @@ module RobotRun
           tmp = act.gsub(/\s+/, "").split(',')
           print tab_f.x
           print tmp
-          robot.PLACE(tab_f, tmp[0].to_i, tmp[1].to_i,tmp[2])
+          robot.place(tab_f, tmp[0].to_i, tmp[1].to_i,tmp[2])
         when 'MOVE'
-          robot.MOVE
+          robot.move
         when 'LEFT'
-          robot.LEFT
+          robot.left
         when 'RIGHT'
-          robot.RIGHT
+          robot.right
         when 'REPORT'
-          robot.REPORT
+          robot.report
         when 'EXIT'
         end
       end

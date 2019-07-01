@@ -9,15 +9,13 @@ module Robot
       @plased = false
     end
 
-    def PLACE(table, position_x, position_y, direction)
+    def place(table, position_x, position_y, direction)
+      list_directions = %w[WEST EAST NORTH SOUTH]
       if position_x < table.length_table &&
          position_y < table.width_table &&
          position_x >= 0 &&
          position_y >= 0
-        if direction == 'WEST' ||
-           direction == 'EAST' ||
-           direction == 'NORTH' ||
-           direction == 'SOUTH'
+        if list_directions.include?(direction)
           @direction = direction.upcase
           @position_x = position_x
           @position_y = position_y
@@ -42,7 +40,7 @@ module Robot
       self.print_position
     end
 
-    def LEFT
+    def left
       left_turn if @plased
     end
 
@@ -60,27 +58,25 @@ module Robot
       print_position
     end
 
-    def RIGHT
+    def right
       right_turn if @plased
     end
 
-    def MOVE
-      if @plased
-        case @direction
-        when 'NORTH'
-            @position_y += 1 if @position_y + 1< @table.width_table
-        when 'SOUTH'
-          @position_y -= 1 if @position_y  > 0
-        when 'EAST'
-            @position_x += 1 if @position_x + 1 < @table.length_table
-        when 'WEST'
-            @position_x -= 1 if @position_x > 0
-        end
-        print_position
+    def step_forward
+      case @direction
+      when 'NORTH' then @position_y += 1 if @position_y + 1< @table.width_table
+      when 'SOUTH' then @position_y -= 1 if @position_y.positive?
+      when 'EAST' then @position_x += 1 if @position_x + 1 < @table.length_table
+      when 'WEST' then @position_x -= 1 if @position_x.positive?
       end
+      print_position
     end
 
-    def REPORT
+    def move
+      step_forward if @plased
+    end
+
+    def report
       if @plased
         puts 'Pos: ' + @position_x.to_s +
              ', ' + @position_y.to_s + ', ' + @direction

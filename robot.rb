@@ -28,36 +28,40 @@ module Robot
       end
     end
 
-    def LEFT
-      if @plased
-        case @direction
-        when 'NORTH'
-          @direction = 'WEST'
-        when 'SOUTH'
-          @direction = 'EAST'
-        when 'EAST'
-          @direction = 'NORTH'
-        when 'WEST'
-          @direction = 'SOUTH'
-        end
-        self.print_position
+    def left_turn
+      case @direction
+      when 'NORTH'
+        @direction = 'WEST'
+      when 'SOUTH'
+        @direction = 'EAST'
+      when 'EAST'
+        @direction = 'NORTH'
+      when 'WEST'
+        @direction = 'SOUTH'
       end
+      self.print_position
+    end
+
+    def LEFT
+      left_turn if @plased
+    end
+
+    def right_turn
+      case @direction
+      when 'NORTH'
+        @direction = 'EAST'
+      when 'SOUTH'
+        @direction = 'WEST'
+      when 'EAST'
+        @direction = 'SOUTH'
+      when 'WEST'
+        @direction = 'NORTH'
+      end
+      print_position
     end
 
     def RIGHT
-      if @plased
-        case @direction
-        when 'NORTH'
-          @direction = 'EAST'
-        when 'SOUTH'
-          @direction = 'WEST'
-        when 'EAST'
-          @direction = 'SOUTH'
-        when 'WEST'
-          @direction = 'NORTH'
-        end
-        print_position
-      end
+      right_turn if @plased
     end
 
     def MOVE
@@ -68,9 +72,9 @@ module Robot
         when 'SOUTH'
           @position_y -= 1 if @position_y  > 0
         when 'EAST'
-            @position_x += 1 if @position_x +1 < @table.length_table
+            @position_x += 1 if @position_x + 1 < @table.length_table
         when 'WEST'
-            @position_x -= 1 if @position_x  > 0
+            @position_x -= 1 if @position_x > 0
         end
         print_position
       end
@@ -78,7 +82,8 @@ module Robot
 
     def REPORT
       if @plased
-        puts 'Output:  ' + @position_x.to_s + ', ' + @position_y.to_s + ', ' + @direction
+        puts 'Pos: ' + @position_x.to_s +
+             ', ' + @position_y.to_s + ', ' + @direction
 
       else
         puts 'Robot dont plased '

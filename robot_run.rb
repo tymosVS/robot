@@ -6,7 +6,7 @@ module RobotRun
   load 'table.rb'
 
   def self.test
-    tab = Table::Table.new(10,10)
+    tab = Table::Table.new(10, 10)
     rob1 = Robot::Robot.new
     puts 'проверка на не выход на юг'
     rob1.place(tab, 2, 2, 'SOUTH')
@@ -56,7 +56,7 @@ module RobotRun
     puts 'Введите ширину стола'
     y = gets.chomp
 
-    if x.length > 0 && y.length > 0 && y.to_i > 0 && x.to_i > 0
+    if x.length > 0 && y.length > 0 && y.to_i.positive? && x.to_i.positive?
       tabl = Table::Table.new(x.to_i, y.to_i)
 
     else

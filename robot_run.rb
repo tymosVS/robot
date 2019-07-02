@@ -44,32 +44,30 @@ module RobotRun
     end
   end
 
-  def self.file_r
+  def self.open_file
     puts 'Введите имя файла(с учётом регистра)'
     file_name = gets.chomp
+    fil_rd = File.open(file_name)
+    fil_rd
+  end
+
+  def self.create_table_file(file_act)
+    file_act.slice!('TABLE')
+    tab_f = Table::Table.new(file_act.split(',')[0].to_i,
+                             file_act.split(',')[1].to_i)
+    tab_f
+  end
+
+  def self.file_r
     tab_f = Table::Table.new
     robot = Robot::Robot.new
-    if FileTest.exist?(file_name)
-      fil_rd = File.open(file_name)
-      fil_rd.each do |line|
-        act = line.chomp.upcase
-        case act.split[0]
-        when 'TABLE'
-          act.slice!('TABLE')
-          tmp = act.gsub(/\s+/, '').split(',')
-          tab_f = Table::Table.new(tmp[0].to_i, tmp[1].to_i)
-        when 'PLACE'
-          act.slice!('PLACE')
-          tmp = act.gsub(/\s+/, '').split(',')
-          robot.place(tab_f, tmp[0].to_i, tmp[1].to_i, tmp[2])
-        when 'MOVE' then robot.move
-        when 'LEFT' then robot.left
-        when 'RIGHT' then robot.right
-        when 'REPORT' then robot.report
-        end
+    open_file.each do |line|
+      file_act = line.chomp.upcase
+      case file_act.split[0]
+      when 'TABLE'
+        tab_f = create_table_file(file_act)
+      else choise_action(file_act, tab_f, robot)
       end
-    else
-      puts 'No such file'
     end
   end
 end

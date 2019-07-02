@@ -21,32 +21,19 @@ module RobotRun
       rob2.move
       rob2.report
     end
-    puts 'проверка на не размещение при невеных кооординатах'
-    rob3 = Robot::Robot.new
-    rob3.place(tab, 10, 2, 'WEST')
-    rob3.report
-    rob3.place(tab, 2, 10, 'WEST')
-    rob3.move
-    rob3.report
-    rob3.place(tab, -1, 10, 'WEST')
-    rob3.report
-    rob3.place(tab, 2, -1, 'WEST')
-    rob3.report
-    rob3.place(tab, 0, 0, 'WEST')
-    rob3.report
     puts 'проверка на не выход на восток'
-    rob4 = Robot::Robot.new
-    rob4.place(tab, 8, 2, 'EAST')
+    rob3 = Robot::Robot.new
+    rob3.place(tab, 8, 2, 'EAST')
     10.times do
-      rob4.move
-      rob4.report
+      rob3.move
+      rob3.report
     end
     puts 'проверка на не выход на север'
-    rob5 = Robot::Robot.new
-    rob5.place(tab, 8, 8, 'NORTH')
+    rob4 = Robot::Robot.new
+    rob4.place(tab, 8, 8, 'NORTH')
     4.times do
-      rob5.move
-      rob5.report
+      rob4.move
+      rob4.report
     end
   end
 
@@ -56,7 +43,7 @@ module RobotRun
     puts 'Введите ширину стола'
     y = gets.chomp
 
-    if x.length > 0 && y.length > 0 && y.to_i.positive? && x.to_i.positive?
+    if x.size.positive? && y.size.positive? && y.to_i.positive? && x.to_i.positive?
       tabl = Table::Table.new(x.to_i, y.to_i)
 
     else
@@ -64,7 +51,7 @@ module RobotRun
     end
     robot = Robot::Robot.new
 
-    while true
+    loop do
       puts 'Выберите действие или введите exit  для выхода'
       print ['PLACE ', 'MOVE', 'LEFT', 'RIGHT', 'REPORT']
       puts ''
@@ -73,18 +60,12 @@ module RobotRun
       when 'PLACE'
         act.slice!('PLACE')
         tmp = act.gsub(/\s+/, '').split(',')
-        # print tmp
         robot.place(tabl, tmp[0].to_i, tmp[1].to_i, tmp[2])
-      when 'MOVE'
-        robot.move
-      when 'LEFT'
-        robot.left
-      when 'RIGHT'
-        robot.right
-      when 'REPORT'
-        robot.report
-      when 'EXIT'
-        break
+      when 'MOVE' then robot.move
+      when 'LEFT' then robot.left
+      when 'RIGHT' then robot.right
+      when 'REPORT' then robot.report
+      when 'EXIT' then break
       end
     end
   end
@@ -115,8 +96,7 @@ module RobotRun
         when 'LEFT' then robot.left
         when 'RIGHT' then robot.right
         when 'REPORT' then robot.report
-        when 'EXIT'
-          break
+        when 'EXIT' then break
         end
       end
     else

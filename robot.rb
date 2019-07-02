@@ -3,15 +3,15 @@
 module Robot
   # simulates robot behavior
   class Robot
-    attr_accessor :direction, :position_x, :position_y, :plased
+    attr_accessor :direc, :position_x, :position_y, :plased
     attr_reader :table, :direction_show
     def initialize
       @plased = false
-      @direction_show = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }
+      @lay = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }
     end
 
     def set_position(table, position_x, position_y, direction)
-      @direction = direction.upcase
+      @direc = direction.upcase
       @position_x = position_x
       @position_y = position_y
       @plased = true
@@ -31,11 +31,11 @@ module Robot
     end
 
     def left_turn
-      case @direction
-      when 'NORTH' then @direction = 'WEST'
-      when 'SOUTH' then @direction = 'EAST'
-      when 'EAST' then @direction = 'NORTH'
-      when 'WEST' then @direction = 'SOUTH'
+      case @direc
+      when 'NORTH' then @direc = 'WEST'
+      when 'SOUTH' then @direc = 'EAST'
+      when 'EAST' then @direc = 'NORTH'
+      when 'WEST' then @direc = 'SOUTH'
       end
       print_position
     end
@@ -45,11 +45,11 @@ module Robot
     end
 
     def right_turn
-      case @direction
-      when 'NORTH' then @direction = 'EAST'
-      when 'SOUTH' then @direction = 'WEST'
-      when 'EAST' then @direction = 'SOUTH'
-      when 'WEST'then @direction = 'NORTH'
+      case @direc
+      when 'NORTH' then @direc = 'EAST'
+      when 'SOUTH' then @direc = 'WEST'
+      when 'EAST' then @direc = 'SOUTH'
+      when 'WEST'then @direc = 'NORTH'
       end
       print_position
     end
@@ -58,12 +58,28 @@ module Robot
       right_turn if @plased
     end
 
+    def north_motion
+      @position_y += 1 if @position_y + 1 < @table.width_table
+    end
+
+    def south_motion
+      @position_y -= 1 if @position_y.positive?
+    end
+
+    def east_motion
+      @position_x += 1 if @position_x + 1 < @table.length_table
+    end
+
+    def west_motion
+      @position_x -= 1 if @position_x.positive?
+    end
+
     def step_forward
-      case @direction
-      when 'NORTH' then @position_y += 1 if @position_y + 1 < @table.width_table
-      when 'SOUTH' then @position_y -= 1 if @position_y.positive?
-      when 'EAST' then @position_x += 1 if @position_x + 1 < @table.length_table
-      when 'WEST' then @position_x -= 1 if @position_x.positive?
+      case @direc
+      when 'NORTH' then north_motion
+      when 'SOUTH' then south_motion
+      when 'EAST' then east_motion
+      when 'WEST' then west_motion
       end
       print_position
     end
@@ -75,8 +91,7 @@ module Robot
     def report
       if @plased
         puts 'Pos: ' + @position_x.to_s +
-             ', ' + @position_y.to_s + ', ' + @direction
-
+             ', ' + @position_y.to_s + ', ' + @direc
       else
         puts 'Robot dont plased '
       end
@@ -84,13 +99,9 @@ module Robot
 
     def print_table
       puts '______________________________________________'
-      (0...@table.length_table).each do |pos_x|
-        (0...@table.width_table).each do |pos_y|
-          if pos_x == @position_x && pos_y == @position_y
-            print @direction_show[@direction.to_sym]
-          else
-            print '-'
-          end
+      (0...@table.length_table).each do |x|
+        (0...@table.width_table).each do |y|
+          print [@position_x, @position_y] == [x, y] ? @lay[@direc.to_sym] : '-'
         end
         puts ''
       end

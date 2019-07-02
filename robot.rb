@@ -10,7 +10,7 @@ module Robot
       @direction_show = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }
     end
 
-    def set_position
+    def set_position(table, position_x, position_y, direction)
       @direction = direction.upcase
       @position_x = position_x
       @position_y = position_y
@@ -24,7 +24,9 @@ module Robot
       if position_x < table.length_table &&
          position_y < table.width_table &&
          position_x >= 0 && position_y >= 0
-        set_position if list_directions.include?(direction)
+        if list_directions.include?(direction)
+          set_position(table, position_x, position_y, direction)
+        end
       end
     end
 
@@ -80,20 +82,22 @@ module Robot
       end
     end
 
-    def print_position
-      if @plased
-        puts '______________________________________________'
-        (0...@table.length_table).each do |pos_x|
-          (0...@table.width_table).each do |pos_y|
-            if pos_x == @position_x && pos_y == @position_y
-              print @direction_show[@direction.to_sym]
-            else
-              print '-'
-            end
+    def print_table
+      puts '______________________________________________'
+      (0...@table.length_table).each do |pos_x|
+        (0...@table.width_table).each do |pos_y|
+          if pos_x == @position_x && pos_y == @position_y
+            print @direction_show[@direction.to_sym]
+          else
+            print '-'
           end
-          puts ''
         end
+        puts ''
       end
+    end
+
+    def print_position
+      print_table if @plased
     end
   end
 end

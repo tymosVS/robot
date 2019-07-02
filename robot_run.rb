@@ -31,11 +31,17 @@ module RobotRun
     end
   end
 
+  def self.prin_msg
+    puts 'Выберите действие или введите exit  для выхода'
+    print %w[PLACE MOVE LEFT RIGHT REPORT]
+    puts ''
+  end
+
   def self.cli_r
     tabl = create_table
     robot = Robot::Robot.new
     loop do
-      puts 'Выберите действие или введите exit  для выхода'
+      prin_msg
       act = gets.chomp.upcase
       case act.split[0]
       when 'EXIT' then break

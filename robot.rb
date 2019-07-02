@@ -4,38 +4,36 @@ module Robot
   # simulates robot behavior
   class Robot
     attr_accessor :direction, :position_x, :position_y, :plased
-    attr_reader :table
+    attr_reader :table, :direction_show
     def initialize
       @plased = false
+      @direction_show = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }
+    end
+
+    def set_position
+      @direction = direction.upcase
+      @position_x = position_x
+      @position_y = position_y
+      @plased = true
+      @table = table
+      print_position
     end
 
     def place(table, position_x, position_y, direction)
       list_directions = %w[WEST EAST NORTH SOUTH]
       if position_x < table.length_table &&
          position_y < table.width_table &&
-         position_x >= 0 &&
-         position_y >= 0
-        if list_directions.include?(direction)
-          @direction = direction.upcase
-          @position_x = position_x
-          @position_y = position_y
-          @plased = true
-          @table = table
-          print_position
-        end
+         position_x >= 0 && position_y >= 0
+        set_position if list_directions.include?(direction)
       end
     end
 
     def left_turn
       case @direction
-      when 'NORTH'
-        @direction = 'WEST'
-      when 'SOUTH'
-        @direction = 'EAST'
-      when 'EAST'
-        @direction = 'NORTH'
-      when 'WEST'
-        @direction = 'SOUTH'
+      when 'NORTH' then @direction = 'WEST'
+      when 'SOUTH' then @direction = 'EAST'
+      when 'EAST' then @direction = 'NORTH'
+      when 'WEST' then @direction = 'SOUTH'
       end
       print_position
     end
@@ -46,14 +44,10 @@ module Robot
 
     def right_turn
       case @direction
-      when 'NORTH'
-        @direction = 'EAST'
-      when 'SOUTH'
-        @direction = 'WEST'
-      when 'EAST'
-        @direction = 'SOUTH'
-      when 'WEST'
-        @direction = 'NORTH'
+      when 'NORTH' then @direction = 'EAST'
+      when 'SOUTH' then @direction = 'WEST'
+      when 'EAST' then @direction = 'SOUTH'
+      when 'WEST'then @direction = 'NORTH'
       end
       print_position
     end
@@ -92,12 +86,7 @@ module Robot
         (0...@table.length_table).each do |pos_x|
           (0...@table.width_table).each do |pos_y|
             if pos_x == @position_x && pos_y == @position_y
-              case @direction
-              when 'NORTH' then print '>'
-              when 'SOUTH' then print '<'
-              when 'EAST'  then print 'v'
-              when 'WEST'  then print '^'
-              end
+              print @direction_show[@direction.to_sym]
             else
               print '-'
             end

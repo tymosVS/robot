@@ -37,6 +37,7 @@ module RobotRun
     puts ''
   end
 
+
   def self.cli_r
     tabl = create_table
     robot = Robot::Robot.new

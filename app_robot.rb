@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Run simulation and select input method
 module AppRobot
   load 'robot_run.rb'
 

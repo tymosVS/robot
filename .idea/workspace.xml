@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80b01888-44f1-47b7-94e6-d1fc767224e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_robot.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app_robot.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robot.rb" beforeDir="false" afterPath="$PROJECT_DIR$/robot.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robot_run.rb" beforeDir="false" afterPath="$PROJECT_DIR$/robot_run.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app_robot.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="15">
+              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -28,20 +27,24 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robot.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+            <state relative-caret-position="98">
+              <caret line="9" column="72" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robot_run.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-340">
-              <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+            <state relative-caret-position="375">
+              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+              <folding>
+                <element signature="e#1166#2023#0" />
+                <element signature="e#2030#3003#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,8 +73,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/table.rb" />
-        <option value="$PROJECT_DIR$/robot_run.rb" />
+        <option value="$PROJECT_DIR$/app_robot.rb" />
         <option value="$PROJECT_DIR$/robot.rb" />
+        <option value="$PROJECT_DIR$/robot_run.rb" />
       </list>
     </option>
   </component>
@@ -166,12 +170,12 @@
       <option name="presentableId" value="Default" />
       <updated>1561985168663</updated>
       <workItem from="1561985169981" duration="4677000" />
-      <workItem from="1562050006434" duration="2545000" />
+      <workItem from="1562050006434" duration="3681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7222000" />
+    <option name="totallyTimeSpent" value="8358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1442" height="845" extended-state="6" />
@@ -202,7 +206,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/robot@app_robot.rcov" NAME="app_robot Coverage Results" MODIFIED="1562052219926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="robot" />
+    <SUITE FILE_PATH="coverage/robot@app_robot.rcov" NAME="app_robot Coverage Results" MODIFIED="1562053615732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="robot" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Gemfile">
@@ -217,22 +221,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app_robot.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robot_run.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        <state relative-caret-position="15">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robot.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        <state relative-caret-position="98">
+          <caret line="9" column="72" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robot_run.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding>
+            <element signature="e#1166#2023#0" />
+            <element signature="e#2030#3003#0" />
+          </folding>
         </state>
       </provider>
     </entry>

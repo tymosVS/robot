@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-load 'robot_run.rb'
+require './robot_run'
 
 def run
   scen = ''

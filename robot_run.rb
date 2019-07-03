@@ -2,7 +2,7 @@
 
 # choise method run
 module RobotRun
-  load 'robot.rb'
+  require './robot'
   load 'table.rb'
   def self.geted_size?(len, widh)
     len.size.positive? && widh.size.positive? && widh.to_i <= 0 && len.to_i <= 0

@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
+ROBOT_VIEW = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }.freeze
+DIRECTIONS = %w[WEST NORTH EAST SOUTH].freeze
+STEP_INFO = { NORTH: { x: 0, y: 1 }, SOUTH: { x: 0, y: -1 }, EAST: { x: 1, y: 0 }, WEST: { x: -1, y: 0 } }.freeze
+
 module Robot
   # simulates robot behavior
   class Robot
-    attr_accessor :direc, :position_x, :position_y, :plased
+    attr_accessor :direc, :position, :plased
     attr_reader :table, :direction_show
+
     def initialize
       @plased = false
-      @lay = { NORTH: '>', SOUTH: '<', EAST: 'v', WEST: '^' }
     end
 
     def set_position(table, position_x, position_y, direction)
       @direc = direction.upcase
-      @position_x = position_x
-      @position_y = position_y
+      @position = { x: position_x, y: position_y }
       @plased = true
       @table = table
       print_position
@@ -30,70 +33,39 @@ module Robot
       end
     end
 
-    def left_turn
-      case @direc
-      when 'NORTH' then @direc = 'WEST'
-      when 'SOUTH' then @direc = 'EAST'
-      when 'EAST' then @direc = 'NORTH'
-      when 'WEST' then @direc = 'SOUTH'
-      end
-      print_position
-    end
-
     def left
-      left_turn if @plased
-    end
+      @direc = DIRECTIONS[(DIRECTIONS.find_index(@direc) - 1)] if @plased
 
-    def right_turn
-      case @direc
-      when 'NORTH' then @direc = 'EAST'
-      when 'SOUTH' then @direc = 'WEST'
-      when 'EAST' then @direc = 'SOUTH'
-      when 'WEST'then @direc = 'NORTH'
-      end
       print_position
     end
 
     def right
-      right_turn if @plased
-    end
+      @direc = DIRECTIONS[(DIRECTIONS.find_index(@direc) + 1) % 4] if @plased
 
-    def north_motion
-      @position_y += 1 if @position_y + 1 < @table.width_table
-    end
-
-    def south_motion
-      @position_y -= 1 if @position_y.positive?
-    end
-
-    def east_motion
-      @position_x += 1 if @position_x + 1 < @table.length_table
-    end
-
-    def west_motion
-      @position_x -= 1 if @position_x.positive?
-    end
-
-    def step_forward
-      case @direc
-      when 'NORTH' then north_motion
-      when 'SOUTH' then south_motion
-      when 'EAST' then east_motion
-      when 'WEST' then west_motion
-      end
       print_position
     end
 
     def move
-      step_forward if @plased
+      do_step(STEP_INFO[@direc.to_sym]) if @plased
+
+      print_position
     end
 
     def report
       if @plased
-        puts 'Pos: ' + @position_x.to_s +
-             ', ' + @position_y.to_s + ', ' + @direc
+        puts 'Pos: ' + @position[:x].to_s +
+             ', ' + @position[:y].to_s + ', ' + @direc
       else
         puts 'Robot dont plased '
+      end
+    end
+
+    private
+
+    def do_step(coordinates)
+      if valid_move?(coordinates[:x], coordinates[:y])
+        @position[:x] += coordinates[:x]
+        @position[:y] += coordinates[:y]
       end
     end
 
@@ -101,10 +73,22 @@ module Robot
       puts '______________________________________________'
       (0...@table.length_table).each do |x|
         (0...@table.width_table).each do |y|
-          print [@position_x, @position_y] == [x, y] ? @lay[@direc.to_sym] : '-'
+          print [@position_x, @position_y] == [x, y] ? ROBOT_VIEW[@direc.to_sym] : '-'
         end
         puts ''
       end
+    end
+
+    def valid_move?(x, y)
+      valid_x_action?(x) && valid_y_action?(y)
+    end
+
+    def valid_x_action?(x)
+      @position[:x] + x < @table.length_table && (@position[:x] + x).positive?
+    end
+
+    def valid_y_action?(y)
+      @position[:y] + y < @table.width_table && (@position[:y] + y).positive?
     end
 
     def print_position
